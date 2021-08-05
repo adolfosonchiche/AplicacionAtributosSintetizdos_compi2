@@ -19,6 +19,7 @@ import java_cup.runtime.Symbol;
 
 BLANCOS=[ \r\t]+
 D=[0-9]+
+ID= [A-Za-z]+[0-9]* 
 
 %%
  
@@ -32,7 +33,8 @@ D=[0-9]+
 \n {yychar=1;}
 
 {BLANCOS} {} 
-{D} {return new Symbol(sym.ENTERO,yyline,(int)yychar, yytext());} 
+{D} {return new Symbol(sym.ENTERO,yyline,(int)yychar, yytext());}
+{ID} {return new Symbol(sym.ID,yyline,(int)yychar, yytext());} 
 
 . {
     System.out.println("Este es un error lexico: "+yytext()+", en la linea: "

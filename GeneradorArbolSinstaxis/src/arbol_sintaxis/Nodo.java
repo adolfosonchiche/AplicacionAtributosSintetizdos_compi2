@@ -12,6 +12,7 @@ public class Nodo {
     public static enum Tipo {
         SUMA,
         MULTIPLICACION,
+        ID,
         NUMERO
     }
 
@@ -24,6 +25,7 @@ public class Nodo {
      * Valor que almacena el nodo cuando se trata de un numero.
      */
     private int valor;
+    private String dato;
     private static int correlativo = 1;
    
     private final int id;
@@ -51,9 +53,19 @@ public class Nodo {
      *
      * @param valor Valor específico del número que almacena el nodo
      */
-    public Nodo(int valor) {
-        this.tipo = Tipo.NUMERO;
+    public Nodo(int valor, String tip) {
+       
+        if (!tip.equals("N")) {
+             System.out.println("         " + tip);
+            this.tipo = Tipo.ID;
+            this.dato = tip;
+        } else {
+            this.tipo = Tipo.NUMERO;
+            this.dato = String.valueOf(valor);
+        }
+        
         this.valor = valor;
+        
         id = correlativo++;
     }
 
@@ -186,7 +198,7 @@ public class Nodo {
         String etiqueta;
          if (null == tipo) {
              //si se trata de un número.
-             return "nodo" + id + " [ label =\"" + valor + "\"];\n";
+             return "nodo" + id + " [ label =\"" + dato + "\"];\n";
              
          }  else switch (tipo) {
             case MULTIPLICACION:
@@ -195,9 +207,12 @@ public class Nodo {
             case SUMA:
                 etiqueta = "nodo" + id + " [ label =\"<C0>|+|<C1>\"];\n";
                 break;
+            case ID:
+                return "nodo"  + id + " [ label =\"" + dato + "\"];\n";
+                
             default:
                 //si se trata de un número.
-                return "nodo" + id + " [ label =\"" + valor + "\"];\n";
+                return "nodo" + id + " [ label =\"" + dato + "\"];\n";
         }
         return etiqueta
                 + operadorIzq.getCodigoInterno()

@@ -36,6 +36,7 @@ parser code
 terminal String PARIZQ,PARDER;
 terminal String MAS,POR;
 terminal String ENTERO;
+terminal String ID;
 
 non terminal ini;
 non terminal instrucciones;
@@ -69,6 +70,7 @@ instruccion ::=
 expresion  ::=     
     expresion:a MAS        expresion:b     {: RESULT=new Nodo(a,b,Nodo.Tipo.SUMA);:}
  |  expresion:a POR        expresion:b     {: RESULT=new Nodo(a,b,Nodo.Tipo.MULTIPLICACION);:}
- |  ENTERO:a                               {:RESULT=new Nodo(Integer.parseInt(a));:}
+ |  ENTERO:a                               {:RESULT=new Nodo(Integer.parseInt(a), "N");:}
+ |  ID:a                               {:RESULT=new Nodo(0, a);:}
  |  PARIZQ expresion:a PARDER              {:RESULT=a;:}
 ;

@@ -8,6 +8,7 @@ package analizadores;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
+  public static final int ID = 7;
   public static final int MAS = 4;
   public static final int PARDER = 3;
   public static final int error = 1;
@@ -22,7 +23,8 @@ public class sym {
   "PARDER",
   "MAS",
   "POR",
-  "ENTERO"
+  "ENTERO",
+  "ID"
   };
 }
 
