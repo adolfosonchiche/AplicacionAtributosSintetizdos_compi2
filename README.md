@@ -1,0 +1,1 @@
+# AplicacionAtributosSintetizdos_compi2
